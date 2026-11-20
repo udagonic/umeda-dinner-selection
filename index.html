@@ -4,22 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>UMEDA SELECTION — 週末のお肉と逸品 4選</title>
+  <title>UMEDA NIGHT SELECTION — お肉と逸品 4選</title>
   <style>
     :root {
-      --bg: #FAF7F2;
-      --surface: #FFFFFF;
-      --surface-soft: #F4EFE6;
-      --ink: #1C1917;
-      --ink-muted: #57534E;
-      --ink-subtle: #8C857B;
-      --accent: #8B2635;
-      --accent-soft: #F9EEF0;
-      --gold: #B89352;
-      --border: #E7DFD3;
-      --shadow: 0 8px 28px rgba(28, 25, 23, 0.06);
-      --shadow-selected: 0 12px 34px rgba(139, 38, 53, 0.14);
-      --radius: 18px;
+      --bg: #0B0A0F;
+      --surface: #16141D;
+      --surface-2: #201D2A;
+      --ink: #FAF6EE;
+      --ink-muted: #B8B0C2;
+      --ink-dim: #7C7489;
+      --gold: #F0C36D;
+      --gold-soft: rgba(240, 195, 109, 0.14);
+      --ruby: #E6485B;
+      --ruby-glow: rgba(230, 72, 91, 0.35);
+      --mint: #4ADE80;
+      --border: rgba(255, 255, 255, 0.1);
       --serif-en: "Baskerville", "Georgia", "Times New Roman", serif;
       --sans-jp: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
     }
@@ -36,88 +35,147 @@
 
     body {
       margin: 0;
-      padding: 0 0 128px;
+      padding: 0 0 132px;
       font-family: var(--sans-jp);
       color: var(--ink);
       background:
-        radial-gradient(circle at 100% 0%, rgba(184, 147, 82, 0.09) 0%, transparent 45%),
-        radial-gradient(circle at 0% 15%, rgba(139, 38, 53, 0.05) 0%, transparent 40%),
+        radial-gradient(ellipse 80% 40% at 50% -5%, rgba(230, 72, 91, 0.22), transparent 70%),
+        radial-gradient(ellipse 60% 35% at 90% 25%, rgba(240, 195, 109, 0.15), transparent 65%),
+        radial-gradient(ellipse 70% 40% at 10% 70%, rgba(124, 58, 237, 0.12), transparent 65%),
         var(--bg);
-      line-height: 1.65;
+      line-height: 1.6;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+    }
+
+    /* Confetti Canvas */
+    #fx-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 90;
     }
 
     .container {
       max-width: 480px;
       margin: 0 auto;
-      padding: 0 18px;
+      padding: 0 16px;
     }
 
-    /* Editorial Masthead */
-    .masthead {
-      padding: 32px 0 22px;
-      border-bottom: 1px solid var(--border);
+    /* Hero Header */
+    .hero {
+      padding: 30px 0 22px;
       position: relative;
+      animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 
-    .masthead::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      width: 56px;
-      height: 3px;
-      background: var(--gold);
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .issue-row {
-      display: flex;
-      justify-content: space-between;
+    .hero-pill {
+      display: inline-flex;
       align-items: center;
+      gap: 7px;
       font-family: var(--serif-en);
-      font-size: 11px;
-      letter-spacing: 0.18em;
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 10px;
+      background: var(--gold-soft);
+      border: 1px solid rgba(240, 195, 109, 0.35);
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
     }
 
-    .title {
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 8px var(--gold);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.75); }
+    }
+
+    .hero-title {
       margin: 0 0 8px;
-      font-size: 25px;
-      font-weight: 700;
+      font-size: 27px;
+      font-weight: 800;
+      line-height: 1.28;
       letter-spacing: -0.02em;
-      line-height: 1.3;
+      background: linear-gradient(135deg, #FFFFFF 20%, #F0C36D 85%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .title-en {
-      display: block;
-      font-family: var(--serif-en);
-      font-weight: 400;
-      font-size: 13px;
-      letter-spacing: 0.14em;
-      color: var(--ink-subtle);
-      margin-bottom: 4px;
-    }
-
-    .lead {
+    .hero-sub {
       margin: 0;
       font-size: 13.5px;
       color: var(--ink-muted);
     }
 
-    /* Quick Mood Filter */
+    /* Roulette / Interactive Banner */
+    .roulette-bar {
+      margin: 18px 0 18px;
+      background: linear-gradient(135deg, rgba(230, 72, 91, 0.16), rgba(240, 195, 109, 0.12));
+      border: 1px solid rgba(240, 195, 109, 0.3);
+      border-radius: 16px;
+      padding: 13px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .roulette-text {
+      font-size: 12.5px;
+      color: var(--ink);
+    }
+    .roulette-text span {
+      display: block;
+      font-size: 11px;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .btn-roulette {
+      flex: 0 0 auto;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-family: var(--sans-jp);
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #16141D;
+      background: linear-gradient(135deg, #F7D794, #E5A94C);
+      box-shadow: 0 4px 16px rgba(240, 195, 109, 0.35);
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+
+    .btn-roulette:active {
+      transform: scale(0.95);
+    }
+
+    /* Mood Filter */
     .filter-wrap {
-      margin: 18px 0 20px;
       display: flex;
       gap: 8px;
       overflow-x: auto;
+      margin-bottom: 18px;
       padding-bottom: 4px;
       scrollbar-width: none;
     }
-    .filter-wrap::-webkit-scrollbar {
-      display: none;
-    }
+    .filter-wrap::-webkit-scrollbar { display: none; }
 
     .filter-chip {
       flex: 0 0 auto;
@@ -126,7 +184,7 @@
       color: var(--ink-muted);
       font-family: var(--sans-jp);
       font-size: 12.5px;
-      font-weight: 600;
+      font-weight: 700;
       padding: 8px 14px;
       border-radius: 999px;
       cursor: pointer;
@@ -135,57 +193,11 @@
 
     .filter-chip.active {
       background: var(--ink);
-      color: #FFFFFF;
+      color: var(--bg);
       border-color: var(--ink);
     }
 
-    /* Quick Guide Box */
-    .guide-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px 16px;
-      margin-bottom: 22px;
-      box-shadow: 0 4px 16px rgba(28, 25, 23, 0.03);
-    }
-
-    .guide-label {
-      font-family: var(--serif-en);
-      font-size: 10.5px;
-      letter-spacing: 0.16em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 6px;
-      font-weight: 700;
-    }
-
-    .guide-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      font-size: 12.5px;
-      color: var(--ink-muted);
-    }
-
-    .guide-list li {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 4px 0;
-      border-bottom: 1px dashed #EDE6DA;
-    }
-
-    .guide-list li:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .guide-list strong {
-      color: var(--ink);
-      font-weight: 600;
-    }
-
-    /* Shop Cards */
+    /* Cards */
     .cards {
       display: flex;
       flex-direction: column;
@@ -195,99 +207,181 @@
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 18px 18px;
-      box-shadow: var(--shadow);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.25s ease, box-shadow 0.25s ease;
       position: relative;
-      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, opacity 0.2s ease;
     }
 
-    .card.hidden {
-      display: none;
+    .card.hidden { display: none; }
+
+    .card.roulette-flash {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px var(--gold), 0 16px 40px rgba(240, 195, 109, 0.3);
+      transform: scale(1.015);
     }
 
     .card.selected {
-      border-color: var(--accent);
-      box-shadow: var(--shadow-selected);
-      transform: translateY(-2px);
+      border-color: var(--ruby);
+      box-shadow: 0 0 0 2px var(--ruby), 0 18px 42px var(--ruby-glow);
+      transform: translateY(-3px);
     }
 
-    .card-top {
+    /* Custom Visual Banner per Shop */
+    .card-banner {
+      height: 108px;
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner-01 {
+      background: linear-gradient(135deg, #2D1520 0%, #5E2133 55%, #1E1424 100%);
+    }
+    .banner-02 {
+      background: linear-gradient(135deg, #16243B 0%, #2C3E6B 55%, #1C1629 100%);
+    }
+    .banner-03 {
+      background: linear-gradient(135deg, #2B1E16 0%, #693B24 55%, #1C1519 100%);
+    }
+    .banner-04 {
+      background: linear-gradient(135deg, #132A26 0%, #24574E 55%, #161822 100%);
+    }
+
+    .card-banner::after {
+      content: "";
+      position: absolute;
+      right: -20px;
+      top: -20px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .banner-top {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 10px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
     }
 
     .card-num {
       font-family: var(--serif-en);
-      font-size: 28px;
-      line-height: 1;
+      font-size: 26px;
       color: var(--gold);
-      font-weight: 400;
-      letter-spacing: -0.02em;
+      line-height: 1;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
     }
 
     .card-badge {
       font-size: 11px;
-      font-weight: 600;
-      color: var(--accent);
-      background: var(--accent-soft);
+      font-weight: 700;
+      color: #FFFFFF;
+      background: rgba(0, 0, 0, 0.38);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.18);
       padding: 4px 10px;
       border-radius: 999px;
-      letter-spacing: 0.02em;
+    }
+
+    .banner-vibe {
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.04em;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-body {
+      padding: 16px 18px 18px;
     }
 
     .shop-name {
-      margin: 0 0 4px;
+      margin: 0 0 6px;
       font-size: 18.5px;
-      font-weight: 700;
+      font-weight: 800;
       line-height: 1.35;
       color: var(--ink);
     }
 
     .shop-meta {
-      font-size: 12px;
-      color: var(--ink-subtle);
-      margin-bottom: 12px;
       display: flex;
       flex-wrap: wrap;
       gap: 6px 12px;
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-bottom: 12px;
     }
 
     .shop-catch {
       margin: 0 0 14px;
-      font-size: 13.5px;
-      color: var(--ink-muted);
-      padding-left: 10px;
-      border-left: 2px solid var(--gold);
+      font-size: 13px;
+      color: #D7D0E0;
     }
 
-    .menu-grid {
-      background: var(--surface-soft);
-      border-radius: 12px;
-      padding: 12px 14px;
+    /* Vibe Meters */
+    .meters {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
       margin-bottom: 14px;
+    }
+    .meter-box {
+      background: var(--surface-2);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+    .meter-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .meter-track {
+      height: 5px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .meter-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--gold), var(--ruby));
+    }
+
+    /* Menu Box */
+    .menu-grid {
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 15px;
     }
 
     .menu-section + .menu-section {
       margin-top: 10px;
       padding-top: 10px;
-      border-top: 1px solid #E5DDD0;
+      border-top: 1px dashed rgba(255, 255, 255, 0.12);
     }
 
     .menu-heading {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      color: var(--accent);
-      margin-bottom: 5px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 6px;
     }
-
     .menu-heading.sub {
       color: var(--ink-muted);
     }
@@ -297,19 +391,16 @@
       padding: 0;
       list-style: none;
       font-size: 13px;
-      color: var(--ink);
     }
-
     .menu-items li {
       display: flex;
       justify-content: space-between;
       gap: 10px;
-      padding: 2px 0;
+      padding: 2.5px 0;
     }
-
     .menu-price {
       font-family: var(--serif-en);
-      color: var(--ink-muted);
+      color: var(--gold);
       white-space: nowrap;
       font-size: 12.5px;
     }
@@ -318,55 +409,50 @@
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 10px;
-      align-items: center;
     }
 
     .btn-select {
       appearance: none;
-      border: 1.5px solid var(--ink);
-      background: transparent;
-      color: var(--ink);
+      border: 1.5px solid rgba(240, 195, 109, 0.55);
+      background: rgba(240, 195, 109, 0.08);
+      color: var(--gold);
       font-family: var(--sans-jp);
       font-size: 13.5px;
-      font-weight: 700;
-      padding: 11px 14px;
-      border-radius: 12px;
+      font-weight: 800;
+      padding: 12px 14px;
+      border-radius: 13px;
       cursor: pointer;
-      transition: all 0.18s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
+    .btn-select:active { transform: scale(0.96); }
+
     .card.selected .btn-select {
-      background: var(--accent);
-      border-color: var(--accent);
+      background: linear-gradient(135deg, #E6485B, #C72C41);
+      border-color: transparent;
       color: #FFFFFF;
+      box-shadow: 0 6px 20px var(--ruby-glow);
     }
 
     .btn-link {
       text-decoration: none;
       font-size: 12.5px;
-      font-weight: 600;
-      color: var(--ink-muted);
-      background: var(--surface-soft);
-      padding: 11px 14px;
-      border-radius: 12px;
+      font-weight: 700;
+      color: var(--ink);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      border-radius: 13px;
+      display: inline-flex;
+      align-items: center;
       white-space: nowrap;
-      transition: background 0.15s ease;
     }
 
-    .btn-link:active {
-      background: #E7DFD3;
-    }
-
-    /* Footer Note */
     .footer-note {
       text-align: center;
-      margin-top: 28px;
-      font-size: 12px;
-      color: var(--ink-subtle);
+      margin-top: 26px;
+      font-size: 11.5px;
+      color: var(--ink-dim);
     }
 
     /* Floating Glass Selection Dock */
@@ -374,19 +460,18 @@
       position: fixed;
       left: 50%;
       bottom: calc(14px + env(safe-area-inset-bottom));
-      transform: translateX(-50%) translateY(140%);
-      width: calc(100% - 28px);
-      max-width: 452px;
-      background: rgba(28, 25, 23, 0.92);
-      -webkit-backdrop-filter: blur(14px);
-      backdrop-filter: blur(14px);
-      color: #FFFFFF;
-      border-radius: 18px;
+      transform: translateX(-50%) translateY(150%);
+      width: calc(100% - 26px);
+      max-width: 454px;
+      background: rgba(22, 20, 29, 0.88);
+      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px);
+      border-radius: 20px;
       padding: 14px 16px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.24);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
-      z-index: 50;
+      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(240, 195, 109, 0.35);
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 60;
     }
 
     .dock.visible {
@@ -402,8 +487,8 @@
     }
 
     .dock-picked {
-      font-weight: 700;
-      color: #F5E6CA;
+      font-weight: 800;
+      color: var(--gold);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -413,10 +498,9 @@
     .dock-clear {
       background: none;
       border: none;
-      color: rgba(255, 255, 255, 0.6);
+      color: var(--ink-muted);
       font-size: 11.5px;
       cursor: pointer;
-      padding: 2px 4px;
     }
 
     .dock-buttons {
@@ -427,46 +511,46 @@
 
     .dock-btn {
       border: none;
-      border-radius: 11px;
-      padding: 11px 10px;
+      border-radius: 12px;
+      padding: 12px 10px;
       font-family: var(--sans-jp);
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       text-align: center;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
     }
 
     .dock-btn.copy {
-      background: rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.12);
       color: #FFFFFF;
     }
 
     .dock-btn.line {
       background: #06C755;
       color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(6, 199, 85, 0.35);
     }
 
     .toast {
       position: fixed;
       top: 18px;
       left: 50%;
-      transform: translateX(-50%) translateY(-24px);
-      background: var(--ink);
-      color: #FFFFFF;
+      transform: translateX(-50%) translateY(-28px);
+      background: linear-gradient(135deg, #F7D794, #E5A94C);
+      color: #16141D;
       font-size: 12.5px;
-      font-weight: 600;
-      padding: 9px 18px;
+      font-weight: 800;
+      padding: 10px 18px;
       border-radius: 999px;
       opacity: 0;
       pointer-events: none;
-      transition: all 0.22s ease;
-      z-index: 80;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+      transition: all 0.24s ease;
+      z-index: 95;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
     }
 
     .toast.show {
@@ -476,209 +560,266 @@
   </style>
 </head>
 <body>
-  <div id="toast" class="toast">LINE用の返信文をコピーしました</div>
+  <canvas id="fx-canvas"></canvas>
+  <div id="toast" class="toast">コピー完了！</div>
 
   <div class="container">
-    <header class="masthead">
-      <div class="issue-row">
-        <span>Umeda Meat &amp; Bistro</span>
-        <span>4 Curated Picks</span>
+    <header class="hero">
+      <div class="hero-pill">
+        <span class="pulse-dot"></span>
+        <span>Umeda Night Selection</span>
       </div>
-      <h1 class="title">
-        <span class="title-en">Saturday Evening Selection</span>
-        梅田のお肉と逸品 4選
+      <h1 class="hero-title">
+        今夜の気分はどれ？<br>梅田のお肉＆逸品 4選
       </h1>
-      <p class="lead">
-        焼肉以外で、600〜1,200円台のお肉メニューもそれ以外の一品も気楽につまめる綺麗めな4軒です。気になったお店をタップして教えてね（2つまで選べます）。
+      <p class="hero-sub">
+        焼肉以外で、600〜1,200円台のお肉もそれ以外の一品も楽しめる綺麗めな4軒。気になったのをタップして教えてね（2つまでOK！）
       </p>
     </header>
 
-    <div class="filter-wrap" role="tablist" aria-label="気分で絞り込み">
-      <button class="filter-chip active" data-filter="all">すべて (4)</button>
-      <button class="filter-chip" data-filter="direct">駅直結・雨でも安心</button>
-      <button class="filter-chip" data-filter="variety">魚・一品も充実</button>
-      <button class="filter-chip" data-filter="bistro">ビストロ・洋食系</button>
+    <div class="roulette-bar">
+      <div class="roulette-text">
+        <span>迷ったら運まかせ</span>
+        今の気分をルーレットで決める！
+      </div>
+      <button type="button" class="btn-roulette" onclick="spinRoulette()">🎲 おまかせ抽選</button>
     </div>
 
-    <section class="guide-box" aria-label="クイック比較">
-      <div class="guide-label">Quick Guide — 気分で選ぶなら</div>
-      <ul class="guide-list">
-        <li><span>地下直結＆品数豊富で気楽に</span><strong>01. コマツバラファーム</strong></li>
-        <li><span>お肉もお魚もデザートも欲張りに</span><strong>02. ひとめぼれ</strong></li>
-        <li><span>小皿フレンチを少しずつシェア</span><strong>03. フレンチマン</strong></li>
-        <li><span>新施設で洋食＆グリルをゆったり</span><strong>04. フランダース テイル</strong></li>
-      </ul>
-    </section>
+    <div class="filter-wrap" role="tablist">
+      <button class="filter-chip active" data-filter="all">すべて (4)</button>
+      <button class="filter-chip" data-filter="direct">駅直結・濡れない</button>
+      <button class="filter-chip" data-filter="variety">魚・デザートも充実</button>
+      <button class="filter-chip" data-filter="bistro">ビストロ・洋食</button>
+    </div>
 
     <main class="cards" id="cards">
       <!-- 01 -->
       <article class="card" data-id="01" data-name="コマツバラファーム（ホワイティ）" data-tags="direct variety">
-        <div class="card-top">
-          <span class="card-num">01</span>
-          <span class="card-badge">ホワイティ直結・肉居酒屋</span>
-        </div>
-        <h2 class="shop-name">肉牧場 コマツバラファーム<br>ホワイティうめだ泉の広場店</h2>
-        <div class="shop-meta">
-          <span>📍 梅田地下街（駅直結）</span>
-          <span>🕒 11:00–23:00</span>
-          <span>💴 2,000〜3,000円目安</span>
-        </div>
-        <p class="shop-catch">
-          明るくて入りやすい綺麗め肉酒場。お肉系から出汁巻き・おでん・パスタまで約50〜100種あり、ご飯感覚でもつまみ感覚でも楽しめます。
-        </p>
-        <div class="menu-grid">
-          <div class="menu-section">
-            <div class="menu-heading">MEAT PICKS</div>
-            <ul class="menu-items">
-              <li><span>名物！ハラミ炙り串</span><span class="menu-price">200円台〜</span></li>
-              <li><span>赤酢の炙り牛寿司</span><span class="menu-price">1貫 200〜300円台</span></li>
-              <li><span>ホルモンどて煮 / しみしみ肉豆腐</span><span class="menu-price">各 539円</span></li>
-              <li><span>タルタルチキン南蛮</span><span class="menu-price">590円前後</span></li>
-            </ul>
+        <div class="card-banner banner-01">
+          <div class="banner-top">
+            <span class="card-num">01</span>
+            <span class="card-badge">ホワイティ直結・ネオ肉酒場</span>
           </div>
-          <div class="menu-section">
-            <div class="menu-heading sub">OTHER DISHES</div>
-            <ul class="menu-items">
-              <li><span>焼きたてあったか出汁巻き</span><span class="menu-price">572円〜</span></li>
-              <li><span>酒場の鉄板ナポリタン 他</span><span class="menu-price">690円前後</span></li>
-            </ul>
-          </div>
+          <div class="banner-vibe">🥩 地下直結 × メニュー約50〜100種の安心感</div>
         </div>
-        <div class="card-actions">
-          <button type="button" class="btn-select" onclick="toggleSelect('01')">
-            <span class="btn-select-label">ここが気になる</span>
-          </button>
-          <a class="btn-link" href="https://www.opefac.com/restaurant/u_komatsubara/" target="_blank" rel="noopener">公式を見る ↗</a>
+        <div class="card-body">
+          <h2 class="shop-name">肉牧場 コマツバラファーム<br>ホワイティうめだ泉の広場店</h2>
+          <div class="shop-meta">
+            <span>📍 梅田地下街（駅直結）</span>
+            <span>🕒 11:00–23:00</span>
+            <span>💴 2,000〜3,000円</span>
+          </div>
+          <p class="shop-catch">
+            明るく綺麗な肉酒場。お肉系はもちろん、出汁巻きや鉄板ナポリタンまで揃っていてご飯感覚でも楽しめます。
+          </p>
+          <div class="meters">
+            <div class="meter-box">
+              <div class="meter-label"><span>駅チカ度</span><span>★★★★★</span></div>
+              <div class="meter-track"><div class="meter-fill" style="width: 100%"></div></div>
+            </div>
+            <div class="meter-box">
+              <div class="meter-label"><span>メニュー豊富さ</span><span>★★★★★</span></div>
+              <div class="meter-track"><div class="meter-fill" style="width: 96%"></div></div>
+            </div>
+          </div>
+          <div class="menu-grid">
+            <div class="menu-section">
+              <div class="menu-heading">MEAT PICKS</div>
+              <ul class="menu-items">
+                <li><span>名物！ハラミ炙り串</span><span class="menu-price">200円台〜</span></li>
+                <li><span>赤酢の炙り牛寿司</span><span class="menu-price">1貫 200〜300円台</span></li>
+                <li><span>ホルモンどて煮 / しみしみ肉豆腐</span><span class="menu-price">各 539円</span></li>
+                <li><span>タルタルチキン南蛮</span><span class="menu-price">590円前後</span></li>
+              </ul>
+            </div>
+            <div class="menu-section">
+              <div class="menu-heading sub">OTHER DISHES</div>
+              <ul class="menu-items">
+                <li><span>焼きたてあったか出汁巻き</span><span class="menu-price">572円〜</span></li>
+                <li><span>酒場の鉄板ナポリタン 他</span><span class="menu-price">690円前後</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn-select" onclick="toggleSelect('01')">
+              <span class="btn-select-label">ここが気になる！</span>
+            </button>
+            <a class="btn-link" href="https://www.opefac.com/restaurant/u_komatsubara/" target="_blank" rel="noopener">公式 ↗</a>
+          </div>
         </div>
       </article>
 
       <!-- 02 -->
       <article class="card" data-id="02" data-name="ひとめぼれ（お初天神）" data-tags="variety">
-        <div class="card-top">
-          <span class="card-num">02</span>
-          <span class="card-badge">ネオ大衆・肉も魚も</span>
-        </div>
-        <h2 class="shop-name">肉ト魚 大衆酒場 ひとめぼれ 梅田本店</h2>
-        <div class="shop-meta">
-          <span>📍 東梅田・お初天神すぐ</span>
-          <span>🕒 土 12:00–27:00</span>
-          <span>💴 2,000〜3,000円目安</span>
-        </div>
-        <p class="shop-catch">
-          清潔感があって女性人気も高いネオ大衆。お肉の一品も海鮮も、締めのチャーハンや甘味まで一通りそろいます。
-        </p>
-        <div class="menu-grid">
-          <div class="menu-section">
-            <div class="menu-heading">MEAT PICKS</div>
-            <ul class="menu-items">
-              <li><span>名物 神戸牛ランタン / 肉寿司</span><span class="menu-price">600〜1,000円台</span></li>
-              <li><span>韓国ユッケ</span><span class="menu-price">968円</span></li>
-              <li><span>タルタルチキン南蛮</span><span class="menu-price">638円</span></li>
-            </ul>
+        <div class="card-banner banner-02">
+          <div class="banner-top">
+            <span class="card-num">02</span>
+            <span class="card-badge">ネオ大衆・肉も魚も甘味も</span>
           </div>
-          <div class="menu-section">
-            <div class="menu-heading sub">OTHER DISHES</div>
-            <ul class="menu-items">
-              <li><span>ぷりっぷりエビマヨ / 明太チーズ焼</span><span class="menu-price">各 638円</span></li>
-              <li><span>とびっこチャーハン / 芋ブリュレ</span><span class="menu-price">各 638円</span></li>
-            </ul>
-          </div>
+          <div class="banner-vibe">✨ 映え肉 × 海鮮 × 芋ブリュレまで全部あり</div>
         </div>
-        <div class="card-actions">
-          <button type="button" class="btn-select" onclick="toggleSelect('02')">
-            <span class="btn-select-label">ここが気になる</span>
-          </button>
-          <a class="btn-link" href="https://tabelog.com/osaka/A2701/A270101/27141273/" target="_blank" rel="noopener">食べログ ↗</a>
+        <div class="card-body">
+          <h2 class="shop-name">肉ト魚 大衆酒場 ひとめぼれ 梅田本店</h2>
+          <div class="shop-meta">
+            <span>📍 東梅田・お初天神すぐ</span>
+            <span>🕒 土 12:00–27:00</span>
+            <span>💴 2,000〜3,000円</span>
+          </div>
+          <p class="shop-catch">
+            女性人気が高い綺麗めネオ大衆。お肉の一品も海鮮もチャーハンも、最後のデザートまで一軒で完結できる欲張り枠！
+          </p>
+          <div class="meters">
+            <div class="meter-box">
+              <div class="meter-label"><span>雰囲気・映え</span><span>★★★★★</span></div>
+              <div class="meter-track"><div class="meter-fill" style="width: 95%"></div></div>
+            </div>
+            <div class="meter-box">
+              <div class="meter-label"><span>甘味・飯充実</span><span>★★★★★</span></div>
+              <div class="meter-track"><div class="meter-fill" style="width: 95%"></div></div>
+            </div>
+          </div>
+          <div class="menu-grid">
+            <div class="menu-section">
+              <div class="menu-heading">MEAT PICKS</div>
+              <ul class="menu-items">
+                <li><span>名物 神戸牛ランタン / 肉寿司</span><span class="menu-price">600〜1,000円台</span></li>
+                <li><span>韓国ユッケ</span><span class="menu-price">968円</span></li>
+                <li><span>タルタルチキン南蛮</span><span class="menu-price">638円</span></li>
+              </ul>
+            </div>
+            <div class="menu-section">
+              <div class="menu-heading sub">OTHER DISHES</div>
+              <ul class="menu-items">
+                <li><span>エビマヨ / とろろ明太チーズ焼</span><span class="menu-price">各 638円</span></li>
+                <li><span>とびっこチャーハン / 芋ブリュレ</span><span class="menu-price">各 638円</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn-select" onclick="toggleSelect('02')">
+              <span class="btn-select-label">ここが気になる！</span>
+            </button>
+            <a class="btn-link" href="https://tabelog.com/osaka/A2701/A270101/27141273/" target="_blank" rel="noopener">食べログ ↗</a>
+          </div>
         </div>
       </article>
 
       <!-- 03 -->
       <article class="card" data-id="03" data-name="フレンチマン（第3ビル）" data-tags="bistro">
-        <div class="card-top">
-          <span class="card-num">03</span>
-          <span class="card-badge">駅ビル・大衆ビストロ</span>
-        </div>
-        <h2 class="shop-name">大衆酒場 フレンチマン<br>大阪駅前第3ビル店</h2>
-        <div class="shop-meta">
-          <span>📍 大阪駅前第3ビル B2F</span>
-          <span>🕒 土 11:00–22:00</span>
-          <span>💴 3,000〜4,000円目安</span>
-        </div>
-        <p class="shop-catch">
-          気取らない大衆空間で本格的な小皿フレンチを少しずつ。カウンター中心でお肉系タパスもパスタもハイレベルです。
-        </p>
-        <div class="menu-grid">
-          <div class="menu-section">
-            <div class="menu-heading">MEAT PICKS</div>
-            <ul class="menu-items">
-              <li><span>鴨のロースト 山椒ソース</span><span class="menu-price">1,078円</span></li>
-              <li><span>手作りショルダーハム</span><span class="menu-price">638円</span></li>
-              <li><span>牛タンと大根 わさびクリーム</span><span class="menu-price">429円</span></li>
-            </ul>
+        <div class="card-banner banner-03">
+          <div class="banner-top">
+            <span class="card-num">03</span>
+            <span class="card-badge">駅ビル・大衆ビストロ</span>
           </div>
-          <div class="menu-section">
-            <div class="menu-heading sub">OTHER DISHES</div>
-            <ul class="menu-items">
-              <li><span>フレンチマンの卵焼き 釜揚げしらす</span><span class="menu-price">638円</span></li>
-              <li><span>ホールチーズのクリームパスタ 他</span><span class="menu-price">小皿多数</span></li>
-            </ul>
-          </div>
+          <div class="banner-vibe">🍷 小皿フレンチを気取らず少しずつシェア</div>
         </div>
-        <div class="card-actions">
-          <button type="button" class="btn-select" onclick="toggleSelect('03')">
-            <span class="btn-select-label">ここが気になる</span>
-          </button>
-          <a class="btn-link" href="https://r.gnavi.co.jp/6sm0m6z10000/" target="_blank" rel="noopener">ぐるなび ↗</a>
+        <div class="card-body">
+          <h2 class="shop-name">大衆酒場 フレンチマン<br>大阪駅前第3ビル店</h2>
+          <div class="shop-meta">
+            <span>📍 大阪駅前第3ビル B2F</span>
+            <span>🕒 土 11:00–22:00</span>
+            <span>💴 3,000〜4,000円</span>
+          </div>
+          <p class="shop-catch">
+            オープンキッチンのカウンター中心でおしゃれな大衆ビストロ。鴨ローストや牛タンなど、本格派のお肉タパスを手頃につまめます。
+          </p>
+          <div class="meters">
+            <div class="meter-box">
+              <div class="meter-label"><span>料理の本格度</span><span>★★★★★</span></div>
+              <div class="meter-track"><div class="meter-fill" style="width: 98%"></div></div>
+            </div>
+            <div class="meter-box">
+              <div class="meter-label"><span>シェアしやすさ</span><span>★★★★★</span></div>
+              <div class="meter-track"><div class="meter-fill" style="width: 92%"></div></div>
+            </div>
+          </div>
+          <div class="menu-grid">
+            <div class="menu-section">
+              <div class="menu-heading">MEAT PICKS</div>
+              <ul class="menu-items">
+                <li><span>鴨のロースト 山椒ソース</span><span class="menu-price">1,078円</span></li>
+                <li><span>手作りショルダーハム</span><span class="menu-price">638円</span></li>
+                <li><span>牛タンと大根 わさびクリーム</span><span class="menu-price">429円</span></li>
+              </ul>
+            </div>
+            <div class="menu-section">
+              <div class="menu-heading sub">OTHER DISHES</div>
+              <ul class="menu-items">
+                <li><span>フレンチマンの卵焼き 釜揚げしらす</span><span class="menu-price">638円</span></li>
+                <li><span>ホールチーズのクリームパスタ 他</span><span class="menu-price">小皿多数</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn-select" onclick="toggleSelect('03')">
+              <span class="btn-select-label">ここが気になる！</span>
+            </button>
+            <a class="btn-link" href="https://r.gnavi.co.jp/6sm0m6z10000/" target="_blank" rel="noopener">ぐるなび ↗</a>
+          </div>
         </div>
       </article>
 
       <!-- 04 -->
       <article class="card" data-id="04" data-name="フランダース テイル（バルチカ03）" data-tags="direct bistro">
-        <div class="card-top">
-          <span class="card-num">04</span>
-          <span class="card-badge">JR西口直結・洋食バル</span>
-        </div>
-        <h2 class="shop-name">フランダース テイル<br>バルチカ03</h2>
-        <div class="shop-meta">
-          <span>📍 イノゲート大阪 4F（西口1分）</span>
-          <span>🕒 土 11:00–23:00</span>
-          <span>💴 3,000〜4,000円目安</span>
-        </div>
-        <p class="shop-catch">
-          新しい駅直結ビル内できれい＆広々。ローストビーフやミスジなどのお肉に加え、約70種のイタリアン・洋食アラカルトが揃います。
-        </p>
-        <div class="menu-grid">
-          <div class="menu-section">
-            <div class="menu-heading">MEAT PICKS</div>
-            <ul class="menu-items">
-              <li><span>自家製ローストビーフ / ミスジステーキ</span><span class="menu-price">バル価格</span></li>
-              <li><span>ソーセージ盛合せ・肉グリル各種</span><span class="menu-price">アラカルト</span></li>
-            </ul>
+        <div class="card-banner banner-04">
+          <div class="banner-top">
+            <span class="card-num">04</span>
+            <span class="card-badge">JR西口直結・洋食バル</span>
           </div>
-          <div class="menu-section">
-            <div class="menu-heading sub">OTHER DISHES</div>
-            <ul class="menu-items">
-              <li><span>カポナータ / 前菜タパス各種</span><span class="menu-price">605円〜</span></li>
-              <li><span>名物ムール貝・ピザ・パスタ約70種</span><span class="menu-price">1,000円台〜</span></li>
-            </ul>
-          </div>
+          <div class="banner-vibe">🏙️ 新ビルの綺麗な空間 × 約70種の洋食＆肉</div>
         </div>
-        <div class="card-actions">
-          <button type="button" class="btn-select" onclick="toggleSelect('04')">
-            <span class="btn-select-label">ここが気になる</span>
-          </button>
-          <a class="btn-link" href="https://www.hotpepper.jp/strJ003851539/food/" target="_blank" rel="noopener">メニュー ↗</a>
+        <div class="card-body">
+          <h2 class="shop-name">フランダース テイル<br>バルチカ03</h2>
+          <div class="shop-meta">
+            <span>📍 イノゲート大阪 4F（西口1分）</span>
+            <span>🕒 土 11:00–23:00</span>
+            <span>💴 3,000〜4,000円</span>
+          </div>
+          <p class="shop-catch">
+            新しい駅直結ビル内できれい＆広々。ローストビーフやミスジに加え、パスタ・ピザ・前菜など約70種から気分で選べます。
+          </p>
+          <div class="meters">
+            <div class="meter-box">
+              <div class="meter-label"><span>駅直結＆綺麗さ</span><span>★★★★★</span></div>
+              <div class="meter-track"><div class="meter-fill" style="width: 98%"></div></div>
+            </div>
+            <div class="meter-box">
+              <div class="meter-label"><span>洋食の充実度</span><span>★★★★★</span></div>
+              <div class="meter-track"><div class="meter-fill" style="width: 94%"></div></div>
+            </div>
+          </div>
+          <div class="menu-grid">
+            <div class="menu-section">
+              <div class="menu-heading">MEAT PICKS</div>
+              <ul class="menu-items">
+                <li><span>自家製ローストビーフ / ミスジステーキ</span><span class="menu-price">バル価格</span></li>
+                <li><span>ソーセージ盛合せ・肉グリル各種</span><span class="menu-price">アラカルト</span></li>
+              </ul>
+            </div>
+            <div class="menu-section">
+              <div class="menu-heading sub">OTHER DISHES</div>
+              <ul class="menu-items">
+                <li><span>カポナータ / 前菜タパス各種</span><span class="menu-price">605円〜</span></li>
+                <li><span>名物ムール貝・ピザ・パスタ約70種</span><span class="menu-price">1,000円台〜</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn-select" onclick="toggleSelect('04')">
+              <span class="btn-select-label">ここが気になる！</span>
+            </button>
+            <a class="btn-link" href="https://www.hotpepper.jp/strJ003851539/food/" target="_blank" rel="noopener">メニュー ↗</a>
+          </div>
         </div>
       </article>
     </main>
 
     <p class="footer-note">
-      メニュー価格や営業時間は時期により変動する場合があります。<br>
-      気になるところが2つあれば両方タップでもOK！
+      価格や営業時間は時期により変更される場合があります。
     </p>
   </div>
 
-  <!-- Floating Selection Dock -->
+  <!-- Floating Glass Selection Dock -->
   <div id="dock" class="dock" aria-live="polite">
     <div class="dock-head">
       <span id="dock-picked" class="dock-picked">選択中：</span>
@@ -701,16 +842,12 @@
         const filter = btn.dataset.filter;
         document.querySelectorAll('.card').forEach(card => {
           const tags = (card.dataset.tags || '').split(' ');
-          if (filter === 'all' || tags.includes(filter)) {
-            card.classList.remove('hidden');
-          } else {
-            card.classList.add('hidden');
-          }
+          card.classList.toggle('hidden', !(filter === 'all' || tags.includes(filter)));
         });
       });
     });
 
-    function toggleSelect(id) {
+    function toggleSelect(id, triggerConfetti = true) {
       const card = document.querySelector(`.card[data-id="${id}"]`);
       if (!card) return;
       const name = card.dataset.name;
@@ -718,20 +855,21 @@
       if (selected.has(id)) {
         selected.delete(id);
         card.classList.remove('selected');
-        card.querySelector('.btn-select-label').textContent = 'ここが気になる';
+        card.querySelector('.btn-select-label').textContent = 'ここが気になる！';
       } else {
         if (selected.size >= 2) {
           const oldestKey = selected.keys().next().value;
           const oldCard = document.querySelector(`.card[data-id="${oldestKey}"]`);
           if (oldCard) {
             oldCard.classList.remove('selected');
-            oldCard.querySelector('.btn-select-label').textContent = 'ここが気になる';
+            oldCard.querySelector('.btn-select-label').textContent = 'ここが気になる！';
           }
           selected.delete(oldestKey);
         }
         selected.set(id, name);
         card.classList.add('selected');
         card.querySelector('.btn-select-label').textContent = '選択中 ✓';
+        if (triggerConfetti) launchGoldBurst(22);
       }
       updateDock();
     }
@@ -739,8 +877,8 @@
     function clearSelection() {
       selected.clear();
       document.querySelectorAll('.card').forEach(card => {
-        card.classList.remove('selected');
-        card.querySelector('.btn-select-label').textContent = 'ここが気になる';
+        card.classList.remove('selected', 'roulette-flash');
+        card.querySelector('.btn-select-label').textContent = 'ここが気になる！';
       });
       updateDock();
     }
@@ -770,16 +908,52 @@
 
       const names = Array.from(selected.entries()).map(([id, name]) => `${id}. ${name}`).join(' / ');
       label.textContent = `選択中：${names}`;
-      const msg = buildMessage();
-      lineLink.href = `https://line.me/R/share?text=${encodeURIComponent(msg)}`;
+      lineLink.href = `https://line.me/R/share?text=${encodeURIComponent(buildMessage())}`;
       dock.classList.add('visible');
+    }
+
+    // Roulette feature
+    let spinning = false;
+    function spinRoulette() {
+      if (spinning) return;
+      spinning = true;
+      // Reset filter to all
+      document.querySelector('.filter-chip[data-filter="all"]').click();
+      clearSelection();
+
+      const ids = ['01', '02', '03', '04'];
+      let step = 0;
+      const totalSteps = 12;
+      const winnerIdx = Math.floor(Math.random() * ids.length);
+
+      const timer = setInterval(() => {
+        document.querySelectorAll('.card').forEach(c => c.classList.remove('roulette-flash'));
+        const curId = ids[step % ids.length];
+        const curCard = document.querySelector(`.card[data-id="${curId}"]`);
+        if (curCard) curCard.classList.add('roulette-flash');
+        step++;
+
+        if (step >= totalSteps + winnerIdx) {
+          clearInterval(timer);
+          document.querySelectorAll('.card').forEach(c => c.classList.remove('roulette-flash'));
+          const winId = ids[winnerIdx];
+          const winCard = document.querySelector(`.card[data-id="${winId}"]`);
+          toggleSelect(winId, false);
+          launchGoldBurst(48);
+          if (winCard) {
+            winCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            showToast(`運命の1軒は「${winId}. ${winCard.dataset.name}」!`);
+          }
+          spinning = false;
+        }
+      }, 95);
     }
 
     function copyReply() {
       const msg = buildMessage();
       if (!msg) return;
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(msg).then(showToast).catch(() => fallbackCopy(msg));
+        navigator.clipboard.writeText(msg).then(() => showToast('LINE用の返信文をコピーしました！')).catch(() => fallbackCopy(msg));
       } else {
         fallbackCopy(msg);
       }
@@ -794,15 +968,72 @@
       ta.select();
       try { document.execCommand('copy'); } catch (e) {}
       document.body.removeChild(ta);
-      showToast();
+      showToast('LINE用の返信文をコピーしました！');
     }
 
     let toastTimer = null;
-    function showToast() {
+    function showToast(text) {
       const t = document.getElementById('toast');
+      t.textContent = text;
       t.classList.add('show');
       clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    // Gold & Ruby Confetti Burst
+    const canvas = document.getElementById('fx-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animId = null;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function launchGoldBurst(count = 30) {
+      const colors = ['#F0C36D', '#F7D794', '#E6485B', '#FFFFFF', '#FF9F68'];
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: canvas.width * (0.2 + Math.random() * 0.6),
+          y: canvas.height * 0.45,
+          vx: (Math.random() - 0.5) * 9,
+          vy: -Math.random() * 10 - 3,
+          size: Math.random() * 6 + 3,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          alpha: 1,
+          rot: Math.random() * Math.PI * 2,
+          vrot: (Math.random() - 0.5) * 0.25
+        });
+      }
+      if (!animId) animateParticles();
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles = particles.filter(p => p.alpha > 0.02);
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.34;
+        p.rot += p.vrot;
+        p.alpha *= 0.965;
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.65);
+        ctx.restore();
+      }
+      if (particles.length > 0) {
+        animId = requestAnimationFrame(animateParticles);
+      } else {
+        animId = null;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
     }
   </script>
 </body>
