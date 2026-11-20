@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>UMEDA NIGHT SELECTION — 今夜、どこ行く？♡</title>
+  <title>11/21（土）UMEDA DATE SELECTION — あした、どこ行く？♡</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet" />
@@ -19,16 +19,10 @@
       --pink-400: #F4729E;
       --pink-500: #E44C82;
       --pink-600: #C83268;
-      --lavender-soft: #F3EDFF;
-      --lavender: #9B7EDE;
-      --mint-soft: #E8FAF3;
-      --mint: #45A888;
-      --peach-soft: #FFF1E6;
-      --peach: #E88358;
-      --ink: #4A313D;
-      --ink-muted: #7F6370;
-      --ink-soft: #A78E9A;
-      --shadow-marshmallow: 0 12px 30px rgba(228, 76, 130, 0.10), 0 3px 10px rgba(74, 49, 61, 0.04);
+      --ink: #3E2732;
+      --ink-muted: #6E5260;
+      --ink-soft: #9B7F8D;
+      --shadow-marshmallow: 0 12px 30px rgba(228, 76, 130, 0.10), 0 3px 10px rgba(62, 39, 50, 0.04);
       --shadow-selected: 0 16px 36px rgba(228, 76, 130, 0.24), 0 0 0 3px #FF8FB8;
       --font-round: "Zen Maru Gothic", -apple-system, BlinkMacSystemFont, "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
       --font-hand: "Kiwi Maru", "Zen Maru Gothic", serif;
@@ -46,7 +40,7 @@
 
     body {
       margin: 0;
-      padding: 0 0 136px;
+      padding: 0 0 132px;
       font-family: var(--font-round);
       color: var(--ink);
       background-color: var(--bg);
@@ -60,7 +54,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Confetti Canvas */
     #fx-canvas {
       position: fixed;
       inset: 0;
@@ -68,7 +61,6 @@
       z-index: 90;
     }
 
-    /* Floating Background Hearts & Sparkles */
     .floating-bg {
       position: fixed;
       inset: 0;
@@ -81,6 +73,7 @@
       position: absolute;
       opacity: 0.45;
       animation: gentleFloat 9s ease-in-out infinite;
+      will-change: transform;
     }
 
     @keyframes gentleFloat {
@@ -91,25 +84,24 @@
     .container {
       max-width: 470px;
       margin: 0 auto;
-      padding: 0 16px;
+      padding: 0 15px;
       position: relative;
       z-index: 2;
     }
 
-    /* First View Hero (Deco Diary / Sticker Book Header) */
+    /* Hero */
     .hero {
       margin-top: 16px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(255,244,248,0.96) 100%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,243,248,0.97) 100%);
       border: 2px solid #FFFFFF;
       border-radius: 30px;
-      padding: 28px 20px 24px;
+      padding: 28px 18px 24px;
       text-align: center;
       box-shadow: var(--shadow-marshmallow);
       position: relative;
       overflow: hidden;
     }
 
-    /* Subtle Gingham Ribbon Top Trim */
     .hero::before {
       content: "";
       position: absolute;
@@ -124,14 +116,13 @@
       opacity: 0.85;
     }
 
-    /* Scalloped Lace Bottom Edge */
     .lace-divider {
-      margin: 16px auto 12px;
+      margin: 14px auto 12px;
       width: 140px;
       height: 10px;
       background: radial-gradient(circle at 5px 0, var(--pink-200) 4px, transparent 4.5px);
       background-size: 10px 10px;
-      opacity: 0.7;
+      opacity: 0.75;
     }
 
     .hero-tag {
@@ -140,7 +131,7 @@
       gap: 6px;
       font-family: var(--font-hand);
       font-size: 11px;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.1em;
       color: var(--pink-600);
       background: var(--pink-50);
       border: 1.5px dashed var(--pink-200);
@@ -164,57 +155,59 @@
       color: var(--ink-muted);
     }
 
-    /* Roulette Ribbon Box */
-    .roulette-box {
-      margin: 18px 0 14px;
+    /* Big Pink Round Roulette Section */
+    .roulette-section {
+      margin: 18px 0 16px;
       background: linear-gradient(135deg, #FFFFFF 0%, #FFF0F6 100%);
-      border: 2px solid #FFE2EE;
-      border-radius: 22px;
-      padding: 13px 15px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
+      border: 2px solid #FFE0EC;
+      border-radius: 26px;
+      padding: 18px 16px;
+      text-align: center;
       box-shadow: var(--shadow-marshmallow);
     }
 
-    .roulette-copy {
-      font-size: 12.5px;
-      font-weight: 700;
-      color: var(--ink);
-    }
-    .roulette-copy small {
-      display: block;
+    .roulette-hint {
       font-family: var(--font-hand);
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--pink-500);
+      font-size: 12px;
+      color: var(--pink-600);
+      margin-bottom: 10px;
     }
 
-    .btn-roulette {
-      flex: 0 0 auto;
-      border: none;
-      border-radius: 999px;
-      padding: 10px 15px;
-      font-family: var(--font-round);
-      font-size: 12.5px;
-      font-weight: 700;
+    .btn-roulette-big {
+      width: 136px;
+      height: 136px;
+      border-radius: 50%;
+      border: 4px solid #FFFFFF;
+      background: radial-gradient(circle at 30% 25%, #FF9EC2 0%, #F46095 55%, #DF3E77 100%);
       color: #FFFFFF;
-      background: linear-gradient(135deg, #FF7CA8, #E44C82);
-      box-shadow: 0 6px 16px rgba(228, 76, 130, 0.28);
+      font-family: var(--font-round);
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 1.35;
       cursor: pointer;
-      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      box-shadow: 0 12px 26px rgba(228, 76, 130, 0.34), inset 0 -4px 10px rgba(170, 30, 80, 0.25);
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
     }
-    .btn-roulette:active {
+
+    .btn-roulette-big:active {
       transform: scale(0.92);
     }
 
-    /* Mood Filter Pills */
+    .btn-roulette-big .emoji {
+      font-size: 26px;
+    }
+
+    /* Filter Pills */
     .filter-wrap {
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
       padding: 4px 2px 6px;
       scrollbar-width: none;
     }
@@ -223,7 +216,7 @@
     .filter-chip {
       flex: 0 0 auto;
       border: 1.5px solid #F7D8E5;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.94);
       color: var(--ink-muted);
       font-family: var(--font-round);
       font-size: 12px;
@@ -232,7 +225,7 @@
       border-radius: 999px;
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(228, 76, 130, 0.06);
-      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease;
     }
 
     .filter-chip.active {
@@ -247,22 +240,23 @@
     .cards {
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 30px;
     }
 
     .card {
       background: var(--white);
       border-radius: 28px;
-      padding: 26px 18px 20px;
+      padding: 26px 16px 20px;
       box-shadow: var(--shadow-marshmallow);
       border: 2px solid #FFFFFF;
       position: relative;
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(18px);
       transition:
-        opacity 0.55s ease,
-        transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+        opacity 0.5s ease,
+        transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1),
         box-shadow 0.25s ease;
+      will-change: transform, opacity;
     }
 
     .card.in-view {
@@ -274,54 +268,48 @@
       display: none;
     }
 
-    /* Puni-puni tap feedback */
     .card.puni {
-      animation: puniBounce 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: puniBounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     @keyframes puniBounce {
       0% { transform: scale(1); }
-      35% { transform: scale(0.96, 1.03); }
-      70% { transform: scale(1.02, 0.98); }
+      35% { transform: scale(0.97, 1.02); }
+      70% { transform: scale(1.015, 0.985); }
       100% { transform: scale(1); }
     }
 
     .card.roulette-flash {
-      box-shadow: 0 0 0 3px var(--pink-400), 0 14px 32px rgba(228, 76, 130, 0.28);
-      transform: scale(1.02);
+      box-shadow: 0 0 0 3px var(--pink-400), 0 14px 32px rgba(228, 76, 130, 0.3);
+      transform: scale(1.015);
     }
 
     .card.selected {
       box-shadow: var(--shadow-selected);
     }
 
-    /* Theme Accents per Sticker Page */
-    .theme-pink { --card-accent: #E44C82; --card-soft: #FFF0F5; --tape-bg: rgba(255, 194, 217, 0.72); }
-    .theme-lav  { --card-accent: #8B6CD6; --card-soft: #F3EDFF; --tape-bg: rgba(214, 196, 255, 0.75); }
-    .theme-peach{ --card-accent: #DF744A; --card-soft: #FFF2EA; --tape-bg: rgba(255, 206, 178, 0.78); }
-    .theme-mint { --card-accent: #3C9D7E; --card-soft: #E9FAF4; --tape-bg: rgba(174, 232, 211, 0.75); }
+    /* Pastel Themes */
+    .theme-pink { --card-accent: #D63C74; --card-soft: #FFF0F5; --tape-bg: rgba(255, 194, 217, 0.78); }
+    .theme-lav  { --card-accent: #7A58C8; --card-soft: #F3EDFF; --tape-bg: rgba(214, 196, 255, 0.8); }
+    .theme-peach{ --card-accent: #D46339; --card-soft: #FFF2EA; --tape-bg: rgba(255, 206, 178, 0.82); }
+    .theme-mint { --card-accent: #2E8A6D; --card-soft: #E9FAF4; --tape-bg: rgba(174, 232, 211, 0.8); }
 
-    /* Masking Tape Sticker at Top */
     .washi-tape {
       position: absolute;
       top: -13px;
-      left: 22px;
+      left: 20px;
       background: var(--tape-bg);
-      background-image: radial-gradient(rgba(255,255,255,0.55) 1.5px, transparent 1.5px);
+      background-image: radial-gradient(rgba(255,255,255,0.6) 1.5px, transparent 1.5px);
       background-size: 8px 8px;
       color: var(--ink);
       font-family: var(--font-hand);
       font-size: 12px;
       font-weight: 700;
-      padding: 5px 16px;
+      padding: 5px 15px;
       border-radius: 4px;
-      transform: rotate(-2.2deg);
-      box-shadow: 0 3px 8px rgba(74, 49, 61, 0.08);
-      backdrop-filter: blur(4px);
+      transform: rotate(-2deg);
+      box-shadow: 0 3px 8px rgba(62, 39, 50, 0.08);
       z-index: 3;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
     }
 
     .ribbon-badge {
@@ -332,19 +320,18 @@
       color: var(--card-accent);
       font-size: 11px;
       font-weight: 700;
-      padding: 5px 12px;
+      padding: 5px 11px;
       border-radius: 999px;
-      border: 1.5px solid rgba(255,255,255,0.9);
+      border: 1.5px solid #FFFFFF;
       box-shadow: 0 3px 8px rgba(0,0,0,0.04);
       z-index: 3;
     }
 
-    /* Large Rounded Photo-style Illustration Frame */
     .photo-frame {
       margin-top: 8px;
       margin-bottom: 14px;
       border-radius: 22px;
-      height: 148px;
+      height: 140px;
       background: var(--card-soft);
       position: relative;
       overflow: hidden;
@@ -352,70 +339,121 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 16px;
+      padding: 14px;
       text-align: center;
       border: 3px solid #FFFFFF;
-      box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.8), 0 6px 16px rgba(74, 49, 61, 0.05);
+      box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.85), 0 6px 16px rgba(62, 39, 50, 0.05);
     }
 
     .photo-frame.gingham {
       background-image:
-        linear-gradient(90deg, rgba(255, 255, 255, 0.42) 50%, transparent 50%),
-        linear-gradient(rgba(255, 255, 255, 0.42) 50%, transparent 50%);
+        linear-gradient(90deg, rgba(255, 255, 255, 0.44) 50%, transparent 50%),
+        linear-gradient(rgba(255, 255, 255, 0.44) 50%, transparent 50%);
       background-size: 18px 18px;
     }
 
     .photo-frame.polka {
-      background-image: radial-gradient(rgba(255, 255, 255, 0.7) 3px, transparent 3.5px);
+      background-image: radial-gradient(rgba(255, 255, 255, 0.72) 3px, transparent 3.5px);
       background-size: 18px 18px;
     }
 
     .photo-sticker-icon {
-      width: 62px;
-      height: 62px;
+      width: 58px;
+      height: 58px;
       border-radius: 50%;
       background: #FFFFFF;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
-      box-shadow: 0 6px 16px rgba(74, 49, 61, 0.08);
+      font-size: 26px;
+      box-shadow: 0 6px 16px rgba(62, 39, 50, 0.08);
       margin-bottom: 8px;
     }
 
     .photo-mood-caption {
       font-family: var(--font-hand);
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 500;
       color: var(--ink);
-      background: rgba(255, 255, 255, 0.88);
-      padding: 4px 13px;
+      background: rgba(255, 255, 255, 0.92);
+      padding: 4px 12px;
       border-radius: 999px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
 
-    .shop-name {
+    /* Tap-to-copy Shop Name */
+    .shop-name-btn {
+      appearance: none;
+      background: none;
+      border: none;
+      padding: 0;
       margin: 0 0 8px;
-      font-size: 18.5px;
+      text-align: left;
+      width: 100%;
+      cursor: pointer;
+      display: block;
+    }
+
+    .shop-name {
+      margin: 0;
+      font-size: 18px;
       font-weight: 900;
       line-height: 1.38;
       color: var(--ink);
+      font-family: var(--font-round);
+    }
+
+    .copy-hint {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--card-accent);
+      background: var(--card-soft);
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-top: 4px;
     }
 
     .shop-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px 10px;
+      gap: 6px 8px;
       font-size: 12px;
-      color: var(--ink-muted);
-      margin-bottom: 12px;
+      color: var(--ink);
+      margin-bottom: 10px;
     }
 
     .meta-pill {
       background: var(--card-soft);
-      padding: 3px 10px;
+      padding: 4px 10px;
       border-radius: 999px;
-      font-weight: 500;
+      font-weight: 700;
+    }
+
+    .meta-pill.note-smoking {
+      background: #FFF1F2;
+      color: #BE123C;
+      border: 1px solid #FECDD3;
+    }
+
+    .meta-pill.note-nosmoke {
+      background: #ECFDF5;
+      color: #047857;
+      border: 1px solid #A7F3D0;
+    }
+
+    .reserve-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--card-accent);
+      background: #FFFFFF;
+      border: 1.5px dashed var(--card-accent);
+      border-radius: 999px;
+      padding: 3px 11px;
+      margin-bottom: 11px;
     }
 
     .shop-catch {
@@ -428,12 +466,11 @@
       padding: 10px 13px;
     }
 
-    /* Menu Box */
     .menu-grid {
       background: var(--card-soft);
       border-radius: 18px;
       padding: 13px 14px;
-      margin-bottom: 15px;
+      margin-bottom: 14px;
     }
 
     .menu-section + .menu-section {
@@ -448,9 +485,6 @@
       letter-spacing: 0.06em;
       color: var(--card-accent);
       margin-bottom: 5px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
     }
 
     .menu-heading.sub {
@@ -461,12 +495,13 @@
       margin: 0;
       padding: 0;
       list-style: none;
-      font-size: 13px;
+      font-size: 12.8px;
+      color: var(--ink);
     }
     .menu-items li {
       display: flex;
       justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
       padding: 2.5px 0;
     }
     .menu-price {
@@ -476,59 +511,118 @@
       font-size: 12.5px;
     }
 
-    /* Actions */
-    .card-actions {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 10px;
-    }
-
+    /* Select Button + 3 External Links */
     .btn-select {
+      width: 100%;
       appearance: none;
       border: 2px solid var(--card-accent);
       background: #FFFFFF;
       color: var(--card-accent);
       font-family: var(--font-round);
-      font-size: 13.5px;
+      font-size: 14px;
       font-weight: 900;
       padding: 12px 14px;
       border-radius: 999px;
       cursor: pointer;
-      transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 0 4px 12px rgba(74, 49, 61, 0.05);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease, color 0.2s ease;
+      box-shadow: 0 4px 12px rgba(62, 39, 50, 0.05);
+      margin-bottom: 10px;
     }
 
     .btn-select:active {
-      transform: scale(0.94);
+      transform: scale(0.95);
     }
 
     .card.selected .btn-select {
       background: var(--card-accent);
       color: #FFFFFF;
-      box-shadow: 0 8px 18px rgba(228, 76, 130, 0.28);
+      box-shadow: 0 8px 18px rgba(228, 76, 130, 0.26);
+    }
+
+    .link-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
     }
 
     .btn-link {
       text-decoration: none;
-      font-size: 12.5px;
+      font-size: 11.5px;
       font-weight: 700;
-      color: var(--ink-muted);
+      color: var(--ink);
       background: #F7F1F4;
-      padding: 12px 15px;
+      padding: 9px 6px;
       border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
+      text-align: center;
       white-space: nowrap;
-      transition: transform 0.15s ease;
+      transition: transform 0.15s ease, background 0.15s ease;
     }
+
     .btn-link:active {
       transform: scale(0.95);
+      background: #EEDEE5;
+    }
+
+    /* Closing Speech Bubble Section */
+    .closing-section {
+      margin-top: 34px;
+      text-align: center;
+    }
+
+    .speech-bubble {
+      background: #FFFFFF;
+      border: 2px solid var(--pink-200);
+      border-radius: 26px;
+      padding: 18px 16px;
+      position: relative;
+      box-shadow: var(--shadow-marshmallow);
+      margin-bottom: 16px;
+    }
+
+    .speech-bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -11px;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 18px;
+      height: 18px;
+      background: #FFFFFF;
+      border-right: 2px solid var(--pink-200);
+      border-bottom: 2px solid var(--pink-200);
+    }
+
+    .speech-text {
+      margin: 0;
+      font-family: var(--font-hand);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--pink-600);
+      line-height: 1.65;
+    }
+
+    .btn-back-roulette {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 24px;
+      font-family: var(--font-round);
+      font-size: 13.5px;
+      font-weight: 900;
+      color: #FFFFFF;
+      background: linear-gradient(135deg, #FF7CA8, #E44C82);
+      box-shadow: 0 8px 20px rgba(228, 76, 130, 0.28);
+      cursor: pointer;
     }
 
     .footer-note {
       text-align: center;
-      margin-top: 28px;
-      font-size: 11.5px;
+      margin-top: 22px;
+      font-size: 11px;
       color: var(--ink-soft);
     }
 
@@ -540,14 +634,14 @@
       transform: translateX(-50%) translateY(150%);
       width: calc(100% - 26px);
       max-width: 444px;
-      background: rgba(255, 255, 255, 0.94);
+      background: rgba(255, 255, 255, 0.95);
       -webkit-backdrop-filter: blur(16px);
       backdrop-filter: blur(16px);
       border-radius: 26px;
-      padding: 14px 16px;
+      padding: 13px 15px;
       box-shadow: 0 16px 38px rgba(228, 76, 130, 0.22);
       border: 2px solid var(--pink-200);
-      transition: transform 0.34s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
       z-index: 60;
     }
 
@@ -559,7 +653,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
+      margin-bottom: 9px;
       font-size: 12.5px;
     }
 
@@ -629,9 +723,10 @@
       border-radius: 999px;
       opacity: 0;
       pointer-events: none;
-      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
       z-index: 95;
       box-shadow: 0 8px 22px rgba(228, 76, 130, 0.3);
+      white-space: nowrap;
     }
 
     .toast.show {
@@ -641,7 +736,6 @@
   </style>
 </head>
 <body>
-  <!-- Floating Hearts & Sparkles -->
   <div class="floating-bg" aria-hidden="true">
     <svg class="float-item" style="top: 8%; left: 6%; width: 22px; animation-delay: 0s;" viewBox="0 0 24 24" fill="#FF9EC2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
     <svg class="float-item" style="top: 14%; right: 8%; width: 20px; animation-delay: 1.8s;" viewBox="0 0 24 24" fill="#D5B8FF"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
@@ -651,26 +745,26 @@
   </div>
 
   <canvas id="fx-canvas"></canvas>
-  <div id="toast" class="toast">コピー完了！♡</div>
+  <div id="toast" class="toast">コピーしました ♡</div>
 
   <div class="container">
     <header class="hero">
-      <div class="hero-tag">🎀 UMEDA NIGHT SELECTION 🎀</div>
-      <h1 class="hero-title">今夜、どこ行く？♡</h1>
+      <div class="hero-tag">🎀 11/21（土）UMEDA DATE SELECTION 🎀</div>
+      <h1 class="hero-title">あした、どこ行く？♡</h1>
       <div class="lace-divider"></div>
       <p class="hero-sub">
-        焼肉以外で、600〜1,200円台のお肉もそれ以外の一品も楽しめる綺麗めな4軒。<br>
-        気になったお店をタップして教えてね（2つまで選べます♡）
+        11/21（土）夜デート用の梅田お肉＆逸品 4選です。<br>
+        店名タップでコピー、気になるお店はボタンで選べるよ（2つまでOK♡）
       </p>
     </header>
 
-    <div class="roulette-box">
-      <div class="roulette-copy">
-        <small>どれにしようか迷ったら…♡</small>
-        おまかせルーレットで決める！
-      </div>
-      <button type="button" class="btn-roulette" onclick="spinRoulette()">🎀 抽選する</button>
-    </div>
+    <section id="roulette-area" class="roulette-section" aria-label="ルーレットで決める">
+      <div class="roulette-hint">迷ったら運まかせに回してみてね ♡</div>
+      <button type="button" class="btn-roulette-big" onclick="spinRoulette()">
+        <span class="emoji">🎀</span>
+        <span>ルーレットで<br>決める！</span>
+      </button>
+    </section>
 
     <div class="filter-wrap" role="tablist">
       <button class="filter-chip active" data-filter="all">すべて (4)</button>
@@ -681,7 +775,7 @@
 
     <main class="cards" id="cards">
       <!-- 01 -->
-      <article class="card theme-pink" data-id="01" data-name="コマツバラファーム（ホワイティ）" data-tags="direct variety">
+      <article class="card theme-pink" data-id="01" data-name="肉居酒屋 ホワイティー梅田 コマツバラファーム" data-tags="direct variety">
         <div class="washi-tape">♡ 01・地下直結の安心感</div>
         <span class="ribbon-badge">ホワイティ直結</span>
 
@@ -690,12 +784,17 @@
           <div class="photo-mood-caption">駅直結でらくちん♪ メニュー豊富な肉酒場</div>
         </div>
 
-        <h2 class="shop-name">肉牧場 コマツバラファーム<br>ホワイティうめだ泉の広場店</h2>
+        <button type="button" class="shop-name-btn" onclick="copyShopName(this)" data-copy="肉居酒屋 ホワイティー梅田 コマツバラファーム">
+          <h2 class="shop-name">肉居酒屋 ホワイティー梅田 コマツバラファーム</h2>
+          <span class="copy-hint">📋 タップで店名コピー</span>
+        </button>
+
         <div class="shop-meta">
           <span class="meta-pill">📍 梅田地下街（駅直結）</span>
-          <span class="meta-pill">🕒 11:00–23:00</span>
+          <span class="meta-pill">🕒 土 11:00–23:00</span>
           <span class="meta-pill">💴 2,000〜3,000円</span>
         </div>
+        <div class="reserve-note">📅 土曜夜は混雑予想のため予約がおすすめ</div>
         <p class="shop-catch">
           明るく綺麗な肉酒場。お肉系はもちろん、出汁巻きや鉄板ナポリタンまで揃っていてご飯感覚でも楽しめます。
         </p>
@@ -704,7 +803,7 @@
           <div class="menu-section">
             <div class="menu-heading">🎀 MEAT PICKS</div>
             <ul class="menu-items">
-              <li><span>名物！ハラミ炙り串</span><span class="menu-price">200円台〜</span></li>
+              <li><span>名物！ハラミ炙り串</span><span class="menu-price">1本 190円〜</span></li>
               <li><span>赤酢の炙り牛寿司</span><span class="menu-price">1貫 200〜300円台</span></li>
               <li><span>ホルモンどて煮 / しみしみ肉豆腐</span><span class="menu-price">各 539円</span></li>
               <li><span>タルタルチキン南蛮</span><span class="menu-price">590円前後</span></li>
@@ -719,16 +818,19 @@
           </div>
         </div>
 
-        <div class="card-actions">
-          <button type="button" class="btn-select" onclick="toggleSelect('01')">
-            <span class="btn-select-label">ここが気になる ♡</span>
-          </button>
+        <button type="button" class="btn-select" onclick="toggleSelect('01')">
+          <span class="btn-select-label">ここが気になる ♡</span>
+        </button>
+
+        <div class="link-row">
           <a class="btn-link" href="https://www.opefac.com/restaurant/u_komatsubara/" target="_blank" rel="noopener">公式 ↗</a>
+          <a class="btn-link" href="https://tabelog.com/osaka/A2701/A270101/27115229/" target="_blank" rel="noopener">食べログ ↗</a>
+          <a class="btn-link" href="https://www.google.com/maps/search/?api=1&query=%E8%82%89%E5%B1%85%E9%85%92%E5%B1%8B+%E3%83%9B%E3%83%AF%E3%82%A4%E3%83%86%E3%82%A3%E3%83%BC%E6%A2%85%E7%94%B0+%E3%82%B3%E3%83%9E%E3%83%84%E3%83%90%E3%83%A9%E3%83%95%E3%82%A1%E3%83%BC%E3%83%A0" target="_blank" rel="noopener">マップ ↗</a>
         </div>
       </article>
 
       <!-- 02 -->
-      <article class="card theme-lav" data-id="02" data-name="ひとめぼれ（お初天神）" data-tags="variety">
+      <article class="card theme-lav" data-id="02" data-name="肉ト魚 大衆酒場 ひとめぼれ 梅田本店" data-tags="variety">
         <div class="washi-tape">✨ 02・欲張りネオ大衆</div>
         <span class="ribbon-badge">肉も魚も甘味も</span>
 
@@ -737,12 +839,18 @@
           <div class="photo-mood-caption">お肉もお魚も、芋ブリュレまで一軒で完結♡</div>
         </div>
 
-        <h2 class="shop-name">肉ト魚 大衆酒場 ひとめぼれ 梅田本店</h2>
+        <button type="button" class="shop-name-btn" onclick="copyShopName(this)" data-copy="肉ト魚 大衆酒場 ひとめぼれ 梅田本店">
+          <h2 class="shop-name">肉ト魚 大衆酒場 ひとめぼれ 梅田本店</h2>
+          <span class="copy-hint">📋 タップで店名コピー</span>
+        </button>
+
         <div class="shop-meta">
           <span class="meta-pill">📍 東梅田・お初天神すぐ</span>
-          <span class="meta-pill">🕒 土 12:00–27:00</span>
-          <span class="meta-pill">💴 2,000〜3,000円</span>
+          <span class="meta-pill">🕒 土 12:00〜深夜</span>
+          <span class="meta-pill">💴 夜 3,000〜3,999円</span>
+          <span class="meta-pill note-smoking">🚬 全席喫煙可</span>
         </div>
+        <div class="reserve-note">📅 土曜夜は混雑予想のため予約がおすすめ</div>
         <p class="shop-catch">
           女性人気が高い綺麗めネオ大衆。お肉の一品も海鮮もチャーハンも、最後のデザートまで一軒で完結できる欲張り枠！
         </p>
@@ -751,7 +859,7 @@
           <div class="menu-section">
             <div class="menu-heading">🎀 MEAT PICKS</div>
             <ul class="menu-items">
-              <li><span>名物 神戸牛ランタン / 肉寿司</span><span class="menu-price">600〜1,000円台</span></li>
+              <li><span>名物 神戸牛ランタン</span><span class="menu-price">858円</span></li>
               <li><span>韓国ユッケ</span><span class="menu-price">968円</span></li>
               <li><span>タルタルチキン南蛮</span><span class="menu-price">638円</span></li>
             </ul>
@@ -765,16 +873,19 @@
           </div>
         </div>
 
-        <div class="card-actions">
-          <button type="button" class="btn-select" onclick="toggleSelect('02')">
-            <span class="btn-select-label">ここが気になる ♡</span>
-          </button>
+        <button type="button" class="btn-select" onclick="toggleSelect('02')">
+          <span class="btn-select-label">ここが気になる ♡</span>
+        </button>
+
+        <div class="link-row">
+          <a class="btn-link" href="https://akr1776211008.owst.jp/" target="_blank" rel="noopener">公式 ↗</a>
           <a class="btn-link" href="https://tabelog.com/osaka/A2701/A270101/27141273/" target="_blank" rel="noopener">食べログ ↗</a>
+          <a class="btn-link" href="https://www.google.com/maps/search/?api=1&query=%E8%82%89%E3%83%88%E9%AD%9A+%E5%A4%A7%E8%A1%86%E9%85%92%E5%A0%B4+%E3%81%B2%E3%81%A8%E3%82%81%E3%81%BC%E3%82%8C+%E6%A2%85%E7%94%B0%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener">マップ ↗</a>
         </div>
       </article>
 
       <!-- 03 -->
-      <article class="card theme-peach" data-id="03" data-name="フレンチマン（第3ビル）" data-tags="bistro">
+      <article class="card theme-peach" data-id="03" data-name="大衆酒場 フレンチマン 大阪駅前第3ビル店" data-tags="bistro">
         <div class="washi-tape">🥂 03・小皿ビストロ</div>
         <span class="ribbon-badge">第3ビル・カウンター</span>
 
@@ -783,12 +894,18 @@
           <div class="photo-mood-caption">気取らない大衆空間で本格小皿フレンチ♪</div>
         </div>
 
-        <h2 class="shop-name">大衆酒場 フレンチマン<br>大阪駅前第3ビル店</h2>
+        <button type="button" class="shop-name-btn" onclick="copyShopName(this)" data-copy="大衆酒場 フレンチマン 大阪駅前第3ビル店">
+          <h2 class="shop-name">大衆酒場 フレンチマン<br>大阪駅前第3ビル店</h2>
+          <span class="copy-hint">📋 タップで店名コピー</span>
+        </button>
+
         <div class="shop-meta">
           <span class="meta-pill">📍 大阪駅前第3ビル B2F</span>
-          <span class="meta-pill">🕒 土 11:00–22:00</span>
+          <span class="meta-pill">🕒 土 11:00–22:30（L.O. 22:00）</span>
           <span class="meta-pill">💴 3,000〜4,000円</span>
+          <span class="meta-pill note-nosmoke">🚭 全席禁煙</span>
         </div>
+        <div class="reserve-note">📅 土曜夜は混雑予想のため予約がおすすめ</div>
         <p class="shop-catch">
           オープンキッチンのカウンター中心でおしゃれな大衆ビストロ。鴨ローストや牛タンなど、本格派のお肉タパスを手頃につまめます。
         </p>
@@ -811,16 +928,19 @@
           </div>
         </div>
 
-        <div class="card-actions">
-          <button type="button" class="btn-select" onclick="toggleSelect('03')">
-            <span class="btn-select-label">ここが気になる ♡</span>
-          </button>
-          <a class="btn-link" href="https://r.gnavi.co.jp/6sm0m6z10000/" target="_blank" rel="noopener">ぐるなび ↗</a>
+        <button type="button" class="btn-select" onclick="toggleSelect('03')">
+          <span class="btn-select-label">ここが気になる ♡</span>
+        </button>
+
+        <div class="link-row">
+          <a class="btn-link" href="https://frenchman-rakuchin.jp/store/" target="_blank" rel="noopener">公式 ↗</a>
+          <a class="btn-link" href="https://tabelog.com/osaka/A2701/A270101/27126809/" target="_blank" rel="noopener">食べログ ↗</a>
+          <a class="btn-link" href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E8%A1%86%E9%85%92%E5%A0%B4+%E3%83%95%E3%83%AC%E3%83%B3%E3%83%81%E3%83%9E%E3%83%B3+%E5%A4%A7%E9%98%AA%E9%A7%85%E5%89%8D%E7%AC%AC3%E3%83%93%E3%83%AB%E5%BA%97" target="_blank" rel="noopener">マップ ↗</a>
         </div>
       </article>
 
       <!-- 04 -->
-      <article class="card theme-mint" data-id="04" data-name="フランダース テイル（バルチカ03）" data-tags="direct bistro">
+      <article class="card theme-mint" data-id="04" data-name="フランダース テイル バルチカ03" data-tags="direct bistro">
         <div class="washi-tape">🌿 04・新ビル綺麗め</div>
         <span class="ribbon-badge">JR西口直結</span>
 
@@ -829,22 +949,27 @@
           <div class="photo-mood-caption">新しい駅直結ビルでゆったり洋食＆お肉♡</div>
         </div>
 
-        <h2 class="shop-name">フランダース テイル<br>バルチカ03</h2>
+        <button type="button" class="shop-name-btn" onclick="copyShopName(this)" data-copy="フランダース テイル バルチカ03">
+          <h2 class="shop-name">フランダース テイル バルチカ03</h2>
+          <span class="copy-hint">📋 タップで店名コピー</span>
+        </button>
+
         <div class="shop-meta">
-          <span class="meta-pill">📍 イノゲート大阪 4F（西口1分）</span>
+          <span class="meta-pill">📍 イノゲート大阪 4F（JR大阪駅西口徒歩1分）</span>
           <span class="meta-pill">🕒 土 11:00–23:00</span>
           <span class="meta-pill">💴 3,000〜4,000円</span>
         </div>
+        <div class="reserve-note">📅 土曜夜は混雑予想のため予約がおすすめ</div>
         <p class="shop-catch">
-          新しい駅直結ビル内できれい＆広々。ローストビーフやミスジに加え、パスタ・ピザ・前菜など約70種から気分で選べます。
+          新しい駅直結ビル内できれい＆広々。自家製ローストビーフや厚切りランプステーキに加え、料理約70種から気分で選べます。
         </p>
 
         <div class="menu-grid">
           <div class="menu-section">
             <div class="menu-heading">🎀 MEAT PICKS</div>
             <ul class="menu-items">
-              <li><span>自家製ローストビーフ / ミスジステーキ</span><span class="menu-price">バル価格</span></li>
-              <li><span>ソーセージ盛合せ・肉グリル各種</span><span class="menu-price">アラカルト</span></li>
+              <li><span>自家製ローストビーフ</span><span class="menu-price">60g 880円 / 120g 1,650円</span></li>
+              <li><span>厚切りランプステーキ</span><span class="menu-price">アラカルト</span></li>
             </ul>
           </div>
           <div class="menu-section">
@@ -856,24 +981,38 @@
           </div>
         </div>
 
-        <div class="card-actions">
-          <button type="button" class="btn-select" onclick="toggleSelect('04')">
-            <span class="btn-select-label">ここが気になる ♡</span>
-          </button>
-          <a class="btn-link" href="https://www.hotpepper.jp/strJ003851539/food/" target="_blank" rel="noopener">メニュー ↗</a>
+        <button type="button" class="btn-select" onclick="toggleSelect('04')">
+          <span class="btn-select-label">ここが気になる ♡</span>
+        </button>
+
+        <div class="link-row">
+          <a class="btn-link" href="https://flanderstale.com/barchica03/" target="_blank" rel="noopener">公式 ↗</a>
+          <a class="btn-link" href="https://tabelog.com/osaka/A2701/A270101/27143237/" target="_blank" rel="noopener">食べログ ↗</a>
+          <a class="btn-link" href="https://www.google.com/maps/search/?api=1&query=%E3%83%95%E3%83%A9%E3%83%B3%E3%83%80%E3%83%BC%E3%82%B9+%E3%83%86%E3%82%A4%E3%83%AB+%E3%83%90%E3%83%AB%E3%83%81%E3%82%AB03" target="_blank" rel="noopener">マップ ↗</a>
         </div>
       </article>
     </main>
 
+    <!-- Closing Bubble Section -->
+    <section class="closing-section" aria-label="まとめ">
+      <div class="speech-bubble">
+        <p class="speech-text">
+          迷ったらルーレット♡<br>
+          決まったら店名をそのまま返信してね
+        </p>
+      </div>
+      <a href="#roulette-area" class="btn-back-roulette">🎀 ルーレットへ戻る</a>
+    </section>
+
     <p class="footer-note">
-      価格や営業時間は時期により変更される場合があります ♡
+      11/21（土）梅田ディナー候補 ・ 価格や営業時間は変更される場合があります ♡
     </p>
   </div>
 
   <!-- Floating Marshmallow Dock -->
   <div id="dock" class="dock" aria-live="polite">
     <div class="dock-head">
-      <span id="dock-picked" class="dock-picked">選択中：</span>
+      <span id="dock-picked" class="dock-picked">えらび中：</span>
       <button type="button" class="dock-clear" onclick="clearSelection()">リセット</button>
     </div>
     <div class="dock-buttons">
@@ -885,7 +1024,6 @@
   <script>
     const selected = new Map();
 
-    // Gentle scroll reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -897,7 +1035,6 @@
 
     document.querySelectorAll('.card').forEach(card => observer.observe(card));
 
-    // Filter chips
     document.querySelectorAll('.filter-chip').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
@@ -916,6 +1053,13 @@
       card.classList.remove('puni');
       void card.offsetWidth;
       card.classList.add('puni');
+    }
+
+    function copyShopName(btn) {
+      const name = btn.dataset.copy;
+      const card = btn.closest('.card');
+      if (card) triggerPuni(card);
+      copyText(name, `「${name}」をコピーしました ♡`);
     }
 
     function toggleSelect(id, triggerBurst = true) {
@@ -958,12 +1102,12 @@
     function buildMessage() {
       const entries = Array.from(selected.entries());
       if (entries.length === 1) {
-        const [id, name] = entries[0];
-        return `明日のお肉、${id}. ${name} が気になる！`;
+        const [, name] = entries[0];
+        return `11/21（土）のお肉、${name} が気になる！♡`;
       }
       if (entries.length === 2) {
-        const [[id1, n1], [id2, n2]] = entries;
-        return `明日のお肉、${id1}. ${n1} か ${id2}. ${n2} のどっちかがいいな！`;
+        const [[, n1], [, n2]] = entries;
+        return `11/21（土）のお肉、${n1} か ${n2} のどっちかがいいな！♡`;
       }
       return '';
     }
@@ -984,7 +1128,6 @@
       dock.classList.add('visible');
     }
 
-    // Roulette feature
     let spinning = false;
     function spinRoulette() {
       if (spinning) return;
@@ -1010,10 +1153,10 @@
           const winId = ids[winnerIdx];
           const winCard = document.querySelector(`.card[data-id="${winId}"]`);
           toggleSelect(winId, false);
-          launchPastelBurst(46);
+          launchPastelBurst(48);
           if (winCard) {
             winCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            showToast(`きゅんっ！運命の1軒は「${winId}. ${winCard.dataset.name}」♡`);
+            showToast(`きゅんっ♡ 運命の1軒は「${winCard.dataset.name}」!`);
           }
           spinning = false;
         }
@@ -1023,14 +1166,18 @@
     function copyReply() {
       const msg = buildMessage();
       if (!msg) return;
+      copyText(msg, 'LINE用の返信文をコピーしました ♡');
+    }
+
+    function copyText(text, toastMsg) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(msg).then(() => showToast('LINE用の返信文をコピーしました！♡')).catch(() => fallbackCopy(msg));
+        navigator.clipboard.writeText(text).then(() => showToast(toastMsg)).catch(() => fallbackCopy(text, toastMsg));
       } else {
-        fallbackCopy(msg);
+        fallbackCopy(text, toastMsg);
       }
     }
 
-    function fallbackCopy(text) {
+    function fallbackCopy(text, toastMsg) {
       const ta = document.createElement('textarea');
       ta.value = text;
       ta.style.position = 'fixed';
@@ -1039,7 +1186,7 @@
       ta.select();
       try { document.execCommand('copy'); } catch (e) {}
       document.body.removeChild(ta);
-      showToast('LINE用の返信文をコピーしました！♡');
+      showToast(toastMsg);
     }
 
     let toastTimer = null;
@@ -1051,7 +1198,6 @@
       toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
     }
 
-    // Pastel Heart & Sparkle Confetti Burst
     const canvas = document.getElementById('fx-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -1077,7 +1223,7 @@
           alpha: 1,
           rot: Math.random() * Math.PI * 2,
           vrot: (Math.random() - 0.5) * 0.2,
-          isHeart: Math.random() > 0.45
+          isHeart: Math.random() > 0.4
         });
       }
       if (!animId) animateParticles();
