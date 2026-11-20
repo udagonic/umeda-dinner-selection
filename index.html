@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>UMEDA SELECTION — 週末のお肉と逸品 4選</title>
+  <style>
+    :root {
+      --bg: #FAF7F2;
+      --surface: #FFFFFF;
+      --surface-soft: #F4EFE6;
+      --ink: #1C1917;
+      --ink-muted: #57534E;
+      --ink-subtle: #8C857B;
+      --accent: #8B2635;
+      --accent-soft: #F9EEF0;
+      --gold: #B89352;
+      --border: #E7DFD3;
+      --shadow: 0 8px 28px rgba(28, 25, 23, 0.06);
+      --shadow-selected: 0 12px 34px rgba(139, 38, 53, 0.14);
+      --radius: 18px;
+      --serif-en: "Baskerville", "Georgia", "Times New Roman", serif;
+      --sans-jp: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      padding: 0 0 128px;
+      font-family: var(--sans-jp);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(184, 147, 82, 0.09) 0%, transparent 45%),
+        radial-gradient(circle at 0% 15%, rgba(139, 38, 53, 0.05) 0%, transparent 40%),
+        var(--bg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    /* Editorial Masthead */
+    .masthead {
+      padding: 32px 0 22px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .masthead::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 56px;
+      height: 3px;
+      background: var(--gold);
+    }
+
+    .issue-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--serif-en);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .title {
+      margin: 0 0 8px;
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+
+    .title-en {
+      display: block;
+      font-family: var(--serif-en);
+      font-weight: 400;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      color: var(--ink-subtle);
+      margin-bottom: 4px;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--ink-muted);
+    }
+
+    /* Quick Mood Filter */
+    .filter-wrap {
+      margin: 18px 0 20px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .filter-wrap::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-chip {
+      flex: 0 0 auto;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink-muted);
+      font-family: var(--sans-jp);
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-chip.active {
+      background: var(--ink);
+      color: #FFFFFF;
+      border-color: var(--ink);
+    }
+
+    /* Quick Guide Box */
+    .guide-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 22px;
+      box-shadow: 0 4px 16px rgba(28, 25, 23, 0.03);
+    }
+
+    .guide-label {
+      font-family: var(--serif-en);
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .guide-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 12.5px;
+      color: var(--ink-muted);
+    }
+
+    .guide-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 4px 0;
+      border-bottom: 1px dashed #EDE6DA;
+    }
+
+    .guide-list li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .guide-list strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* Shop Cards */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 18px 18px;
+      box-shadow: var(--shadow);
+      position: relative;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, opacity 0.2s ease;
+    }
+
+    .card.hidden {
+      display: none;
+    }
+
+    .card.selected {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-selected);
+      transform: translateY(-2px);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .card-num {
+      font-family: var(--serif-en);
+      font-size: 28px;
+      line-height: 1;
+      color: var(--gold);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+    }
+
+    .card-badge {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 4px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+    }
+
+    .shop-name {
+      margin: 0 0 4px;
+      font-size: 18.5px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--ink);
+    }
+
+    .shop-meta {
+      font-size: 12px;
+      color: var(--ink-subtle);
+      margin-bottom: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+    }
+
+    .shop-catch {
+      margin: 0 0 14px;
+      font-size: 13.5px;
+      color: var(--ink-muted);
+      padding-left: 10px;
+      border-left: 2px solid var(--gold);
+    }
+
+    .menu-grid {
+      background: var(--surface-soft);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+    }
+
+    .menu-section + .menu-section {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #E5DDD0;
+    }
+
+    .menu-heading {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .menu-heading.sub {
+      color: var(--ink-muted);
+    }
+
+    .menu-items {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 13px;
+      color: var(--ink);
+    }
+
+    .menu-items li {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 2px 0;
+    }
+
+    .menu-price {
+      font-family: var(--serif-en);
+      color: var(--ink-muted);
+      white-space: nowrap;
+      font-size: 12.5px;
+    }
+
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-select {
+      appearance: none;
+      border: 1.5px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      font-family: var(--sans-jp);
+      font-size: 13.5px;
+      font-weight: 700;
+      padding: 11px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .card.selected .btn-select {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .btn-link {
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      background: var(--surface-soft);
+      padding: 11px 14px;
+      border-radius: 12px;
+      white-space: nowrap;
+      transition: background 0.15s ease;
+    }
+
+    .btn-link:active {
+      background: #E7DFD3;
+    }
+
+    /* Footer Note */
+    .footer-note {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 12px;
+      color: var(--ink-subtle);
+    }
+
+    /* Floating Glass Selection Dock */
+    .dock {
+      position: fixed;
+      left: 50%;
+      bottom: calc(14px + env(safe-area-inset-bottom));
+      transform: translateX(-50%) translateY(140%);
+      width: calc(100% - 28px);
+      max-width: 452px;
+      background: rgba(28, 25, 23, 0.92);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      color: #FFFFFF;
+      border-radius: 18px;
+      padding: 14px 16px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.24);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 50;
+    }
+
+    .dock.visible {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dock-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 12.5px;
+    }
+
+    .dock-picked {
+      font-weight: 700;
+      color: #F5E6CA;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding-right: 8px;
+    }
+
+    .dock-clear {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 11.5px;
+      cursor: pointer;
+      padding: 2px 4px;
+    }
+
+    .dock-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .dock-btn {
+      border: none;
+      border-radius: 11px;
+      padding: 11px 10px;
+      font-family: var(--sans-jp);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .dock-btn.copy {
+      background: rgba(255, 255, 255, 0.14);
+      color: #FFFFFF;
+    }
+
+    .dock-btn.line {
+      background: #06C755;
+      color: #FFFFFF;
+    }
+
+    .toast {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-24px);
+      background: var(--ink);
+      color: #FFFFFF;
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 9px 18px;
+      border-radius: 999px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.22s ease;
+      z-index: 80;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div id="toast" class="toast">LINE用の返信文をコピーしました</div>
+
+  <div class="container">
+    <header class="masthead">
+      <div class="issue-row">
+        <span>Umeda Meat &amp; Bistro</span>
+        <span>4 Curated Picks</span>
+      </div>
+      <h1 class="title">
+        <span class="title-en">Saturday Evening Selection</span>
+        梅田のお肉と逸品 4選
+      </h1>
+      <p class="lead">
+        焼肉以外で、600〜1,200円台のお肉メニューもそれ以外の一品も気楽につまめる綺麗めな4軒です。気になったお店をタップして教えてね（2つまで選べます）。
+      </p>
+    </header>
+
+    <div class="filter-wrap" role="tablist" aria-label="気分で絞り込み">
+      <button class="filter-chip active" data-filter="all">すべて (4)</button>
+      <button class="filter-chip" data-filter="direct">駅直結・雨でも安心</button>
+      <button class="filter-chip" data-filter="variety">魚・一品も充実</button>
+      <button class="filter-chip" data-filter="bistro">ビストロ・洋食系</button>
+    </div>
+
+    <section class="guide-box" aria-label="クイック比較">
+      <div class="guide-label">Quick Guide — 気分で選ぶなら</div>
+      <ul class="guide-list">
+        <li><span>地下直結＆品数豊富で気楽に</span><strong>01. コマツバラファーム</strong></li>
+        <li><span>お肉もお魚もデザートも欲張りに</span><strong>02. ひとめぼれ</strong></li>
+        <li><span>小皿フレンチを少しずつシェア</span><strong>03. フレンチマン</strong></li>
+        <li><span>新施設で洋食＆グリルをゆったり</span><strong>04. フランダース テイル</strong></li>
+      </ul>
+    </section>
+
+    <main class="cards" id="cards">
+      <!-- 01 -->
+      <article class="card" data-id="01" data-name="コマツバラファーム（ホワイティ）" data-tags="direct variety">
+        <div class="card-top">
+          <span class="card-num">01</span>
+          <span class="card-badge">ホワイティ直結・肉居酒屋</span>
+        </div>
+        <h2 class="shop-name">肉牧場 コマツバラファーム<br>ホワイティうめだ泉の広場店</h2>
+        <div class="shop-meta">
+          <span>📍 梅田地下街（駅直結）</span>
+          <span>🕒 11:00–23:00</span>
+          <span>💴 2,000〜3,000円目安</span>
+        </div>
+        <p class="shop-catch">
+          明るくて入りやすい綺麗め肉酒場。お肉系から出汁巻き・おでん・パスタまで約50〜100種あり、ご飯感覚でもつまみ感覚でも楽しめます。
+        </p>
+        <div class="menu-grid">
+          <div class="menu-section">
+            <div class="menu-heading">MEAT PICKS</div>
+            <ul class="menu-items">
+              <li><span>名物！ハラミ炙り串</span><span class="menu-price">200円台〜</span></li>
+              <li><span>赤酢の炙り牛寿司</span><span class="menu-price">1貫 200〜300円台</span></li>
+              <li><span>ホルモンどて煮 / しみしみ肉豆腐</span><span class="menu-price">各 539円</span></li>
+              <li><span>タルタルチキン南蛮</span><span class="menu-price">590円前後</span></li>
+            </ul>
+          </div>
+          <div class="menu-section">
+            <div class="menu-heading sub">OTHER DISHES</div>
+            <ul class="menu-items">
+              <li><span>焼きたてあったか出汁巻き</span><span class="menu-price">572円〜</span></li>
+              <li><span>酒場の鉄板ナポリタン 他</span><span class="menu-price">690円前後</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button type="button" class="btn-select" onclick="toggleSelect('01')">
+            <span class="btn-select-label">ここが気になる</span>
+          </button>
+          <a class="btn-link" href="https://www.opefac.com/restaurant/u_komatsubara/" target="_blank" rel="noopener">公式を見る ↗</a>
+        </div>
+      </article>
+
+      <!-- 02 -->
+      <article class="card" data-id="02" data-name="ひとめぼれ（お初天神）" data-tags="variety">
+        <div class="card-top">
+          <span class="card-num">02</span>
+          <span class="card-badge">ネオ大衆・肉も魚も</span>
+        </div>
+        <h2 class="shop-name">肉ト魚 大衆酒場 ひとめぼれ 梅田本店</h2>
+        <div class="shop-meta">
+          <span>📍 東梅田・お初天神すぐ</span>
+          <span>🕒 土 12:00–27:00</span>
+          <span>💴 2,000〜3,000円目安</span>
+        </div>
+        <p class="shop-catch">
+          清潔感があって女性人気も高いネオ大衆。お肉の一品も海鮮も、締めのチャーハンや甘味まで一通りそろいます。
+        </p>
+        <div class="menu-grid">
+          <div class="menu-section">
+            <div class="menu-heading">MEAT PICKS</div>
+            <ul class="menu-items">
+              <li><span>名物 神戸牛ランタン / 肉寿司</span><span class="menu-price">600〜1,000円台</span></li>
+              <li><span>韓国ユッケ</span><span class="menu-price">968円</span></li>
+              <li><span>タルタルチキン南蛮</span><span class="menu-price">638円</span></li>
+            </ul>
+          </div>
+          <div class="menu-section">
+            <div class="menu-heading sub">OTHER DISHES</div>
+            <ul class="menu-items">
+              <li><span>ぷりっぷりエビマヨ / 明太チーズ焼</span><span class="menu-price">各 638円</span></li>
+              <li><span>とびっこチャーハン / 芋ブリュレ</span><span class="menu-price">各 638円</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button type="button" class="btn-select" onclick="toggleSelect('02')">
+            <span class="btn-select-label">ここが気になる</span>
+          </button>
+          <a class="btn-link" href="https://tabelog.com/osaka/A2701/A270101/27141273/" target="_blank" rel="noopener">食べログ ↗</a>
+        </div>
+      </article>
+
+      <!-- 03 -->
+      <article class="card" data-id="03" data-name="フレンチマン（第3ビル）" data-tags="bistro">
+        <div class="card-top">
+          <span class="card-num">03</span>
+          <span class="card-badge">駅ビル・大衆ビストロ</span>
+        </div>
+        <h2 class="shop-name">大衆酒場 フレンチマン<br>大阪駅前第3ビル店</h2>
+        <div class="shop-meta">
+          <span>📍 大阪駅前第3ビル B2F</span>
+          <span>🕒 土 11:00–22:00</span>
+          <span>💴 3,000〜4,000円目安</span>
+        </div>
+        <p class="shop-catch">
+          気取らない大衆空間で本格的な小皿フレンチを少しずつ。カウンター中心でお肉系タパスもパスタもハイレベルです。
+        </p>
+        <div class="menu-grid">
+          <div class="menu-section">
+            <div class="menu-heading">MEAT PICKS</div>
+            <ul class="menu-items">
+              <li><span>鴨のロースト 山椒ソース</span><span class="menu-price">1,078円</span></li>
+              <li><span>手作りショルダーハム</span><span class="menu-price">638円</span></li>
+              <li><span>牛タンと大根 わさびクリーム</span><span class="menu-price">429円</span></li>
+            </ul>
+          </div>
+          <div class="menu-section">
+            <div class="menu-heading sub">OTHER DISHES</div>
+            <ul class="menu-items">
+              <li><span>フレンチマンの卵焼き 釜揚げしらす</span><span class="menu-price">638円</span></li>
+              <li><span>ホールチーズのクリームパスタ 他</span><span class="menu-price">小皿多数</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button type="button" class="btn-select" onclick="toggleSelect('03')">
+            <span class="btn-select-label">ここが気になる</span>
+          </button>
+          <a class="btn-link" href="https://r.gnavi.co.jp/6sm0m6z10000/" target="_blank" rel="noopener">ぐるなび ↗</a>
+        </div>
+      </article>
+
+      <!-- 04 -->
+      <article class="card" data-id="04" data-name="フランダース テイル（バルチカ03）" data-tags="direct bistro">
+        <div class="card-top">
+          <span class="card-num">04</span>
+          <span class="card-badge">JR西口直結・洋食バル</span>
+        </div>
+        <h2 class="shop-name">フランダース テイル<br>バルチカ03</h2>
+        <div class="shop-meta">
+          <span>📍 イノゲート大阪 4F（西口1分）</span>
+          <span>🕒 土 11:00–23:00</span>
+          <span>💴 3,000〜4,000円目安</span>
+        </div>
+        <p class="shop-catch">
+          新しい駅直結ビル内できれい＆広々。ローストビーフやミスジなどのお肉に加え、約70種のイタリアン・洋食アラカルトが揃います。
+        </p>
+        <div class="menu-grid">
+          <div class="menu-section">
+            <div class="menu-heading">MEAT PICKS</div>
+            <ul class="menu-items">
+              <li><span>自家製ローストビーフ / ミスジステーキ</span><span class="menu-price">バル価格</span></li>
+              <li><span>ソーセージ盛合せ・肉グリル各種</span><span class="menu-price">アラカルト</span></li>
+            </ul>
+          </div>
+          <div class="menu-section">
+            <div class="menu-heading sub">OTHER DISHES</div>
+            <ul class="menu-items">
+              <li><span>カポナータ / 前菜タパス各種</span><span class="menu-price">605円〜</span></li>
+              <li><span>名物ムール貝・ピザ・パスタ約70種</span><span class="menu-price">1,000円台〜</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button type="button" class="btn-select" onclick="toggleSelect('04')">
+            <span class="btn-select-label">ここが気になる</span>
+          </button>
+          <a class="btn-link" href="https://www.hotpepper.jp/strJ003851539/food/" target="_blank" rel="noopener">メニュー ↗</a>
+        </div>
+      </article>
+    </main>
+
+    <p class="footer-note">
+      メニュー価格や営業時間は時期により変動する場合があります。<br>
+      気になるところが2つあれば両方タップでもOK！
+    </p>
+  </div>
+
+  <!-- Floating Selection Dock -->
+  <div id="dock" class="dock" aria-live="polite">
+    <div class="dock-head">
+      <span id="dock-picked" class="dock-picked">選択中：</span>
+      <button type="button" class="dock-clear" onclick="clearSelection()">リセット</button>
+    </div>
+    <div class="dock-buttons">
+      <button type="button" class="dock-btn copy" onclick="copyReply()">返信文をコピー</button>
+      <a id="line-share" class="dock-btn line" href="#" target="_blank" rel="noopener">LINEで送る</a>
+    </div>
+  </div>
+
+  <script>
+    const selected = new Map();
+
+    // Filter chips
+    document.querySelectorAll('.filter-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.card').forEach(card => {
+          const tags = (card.dataset.tags || '').split(' ');
+          if (filter === 'all' || tags.includes(filter)) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    function toggleSelect(id) {
+      const card = document.querySelector(`.card[data-id="${id}"]`);
+      if (!card) return;
+      const name = card.dataset.name;
+
+      if (selected.has(id)) {
+        selected.delete(id);
+        card.classList.remove('selected');
+        card.querySelector('.btn-select-label').textContent = 'ここが気になる';
+      } else {
+        if (selected.size >= 2) {
+          const oldestKey = selected.keys().next().value;
+          const oldCard = document.querySelector(`.card[data-id="${oldestKey}"]`);
+          if (oldCard) {
+            oldCard.classList.remove('selected');
+            oldCard.querySelector('.btn-select-label').textContent = 'ここが気になる';
+          }
+          selected.delete(oldestKey);
+        }
+        selected.set(id, name);
+        card.classList.add('selected');
+        card.querySelector('.btn-select-label').textContent = '選択中 ✓';
+      }
+      updateDock();
+    }
+
+    function clearSelection() {
+      selected.clear();
+      document.querySelectorAll('.card').forEach(card => {
+        card.classList.remove('selected');
+        card.querySelector('.btn-select-label').textContent = 'ここが気になる';
+      });
+      updateDock();
+    }
+
+    function buildMessage() {
+      const entries = Array.from(selected.entries());
+      if (entries.length === 1) {
+        const [id, name] = entries[0];
+        return `明日のお肉、${id}. ${name} が気になる！`;
+      }
+      if (entries.length === 2) {
+        const [[id1, n1], [id2, n2]] = entries;
+        return `明日のお肉、${id1}. ${n1} か ${id2}. ${n2} のどっちかがいいな！`;
+      }
+      return '';
+    }
+
+    function updateDock() {
+      const dock = document.getElementById('dock');
+      const label = document.getElementById('dock-picked');
+      const lineLink = document.getElementById('line-share');
+
+      if (selected.size === 0) {
+        dock.classList.remove('visible');
+        return;
+      }
+
+      const names = Array.from(selected.entries()).map(([id, name]) => `${id}. ${name}`).join(' / ');
+      label.textContent = `選択中：${names}`;
+      const msg = buildMessage();
+      lineLink.href = `https://line.me/R/share?text=${encodeURIComponent(msg)}`;
+      dock.classList.add('visible');
+    }
+
+    function copyReply() {
+      const msg = buildMessage();
+      if (!msg) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(msg).then(showToast).catch(() => fallbackCopy(msg));
+      } else {
+        fallbackCopy(msg);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      showToast();
+    }
+
+    let toastTimer = null;
+    function showToast() {
+      const t = document.getElementById('toast');
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+    }
+  </script>
+</body>
+</html>
